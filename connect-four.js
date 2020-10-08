@@ -3,12 +3,20 @@ let game;
 const gameName = document.getElementById('game-name');
 function updateUI(){
     const board = document.getElementById('board-holder');
-
     if(!game){
         board.classList.add('is-invisible');
     }else{
         board.classList.remove('is-invisible');
         gameName.innerHTML = game.getName();
+    }
+    const clickTargets = document.getElementById('click-targets');
+    const currentPlayer = game.currentPlayer;
+    if (currentPlayer === 1) {
+        clickTargets.classList.add('black');
+        clickTargets.classList.remove('red');
+    } else {
+        clickTargets.classList.add('red');
+        clickTargets.classList.remove('black');
     }
 }
 
@@ -31,14 +39,20 @@ window.addEventListener('DOMContentLoaded', event => {
         game = new Game(playerOne.value, playerTwo.value);
         updateUI();
     })
-    let playerColor = 1;
-    if (!(game.currentPlayer% 2)) {
-        playerColor = 'black';
-    } else {
-        playerColor = 'red';
-    }
-    document.querySelectorAll('.click-target')
-    .forEach(target => {
-        target.classList.add(playerColor);
+    const clickTargets = document.getElementById('click-targets');
+    clickTargets.addEventListener('click', event => {
+        game.playInColumn();
+        updateUI();
     });
+    // let playerColor;
+    // if (!(game.currentPlayer% 2)) {
+    //     playerColor = 'black';
+    // } else {
+    //     playerColor = 'red';
+    // }
+    // document.querySelectorAll('.click-target')
+    // .forEach(target => {
+    //     console.log(target.id)
+    //     target.classList.add(playerColor);
+    // });
 });
