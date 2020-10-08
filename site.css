@@ -105,11 +105,11 @@ main {
   background-color: black;
 }
 
-.red .click-target:hover {
+.red.click-target:hover {
   background-color: red;
 }
 
-.black .click-target:hover {
+.black.click-target:hover {
   background-color: black;
 }
 

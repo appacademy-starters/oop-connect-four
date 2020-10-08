@@ -31,7 +31,7 @@ window.addEventListener('DOMContentLoaded', event => {
         game = new Game(playerOne.value, playerTwo.value);
         updateUI();
     })
-    let turnCountr = 0;
+    let turnCountr = 1;
     let playerColor;
     if (turnCountr % 2) {
         playerColor = 'black';
@@ -42,12 +42,10 @@ window.addEventListener('DOMContentLoaded', event => {
     .forEach(target => {
         target.addEventListener('mouseenter', event => {
             event.target.classList.add(playerColor);
-            console.log('Triggered mouse enter',event.target.id);
         });
         target.addEventListener('mouseleave', event => {
             event.target.classList.remove(playerColor);
-            console.log('Triggered mouse leave');
         });
     });
-    
+
 });
