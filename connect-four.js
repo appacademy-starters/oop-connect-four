@@ -67,8 +67,11 @@ window.addEventListener('DOMContentLoaded', event => {
     const clickTargets = document.getElementById('click-targets');
     clickTargets.addEventListener('click', event => {
         const targetId = event.target.id;
-        if(!targetId.startsWith('column-')) return;
         const columnIdx = Number.parseInt(targetId.split('column-').join(''));
+        
+        if(game.isColumnFull(columnIdx)) return;
+        
+        if(!targetId.startsWith('column-')) return;
         game.playInColumn(columnIdx);
         updateUI();
     });
