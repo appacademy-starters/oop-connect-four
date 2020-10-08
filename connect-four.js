@@ -1,4 +1,5 @@
 import { Game } from './game.js';
+//import { Column } from './column.js';
 let game;
 const gameName = document.getElementById('game-name');
 function updateUI(){
@@ -8,6 +9,30 @@ function updateUI(){
     }else{
         board.classList.remove('is-invisible');
         gameName.innerHTML = game.getName();
+        for(let columnIdx = 0; columnIdx <= 6; columnIdx++){
+           
+            if(game.isColumnFull(columnIdx)){
+                document.getElementById(`column-${columnIdx}`).classList.add('full');
+            }else{
+                document.getElementById(`column-${columnIdx}`).classList.remove('full');
+            }
+        }
+    }
+    for(let rowIdx = 0; rowIdx <= 5; rowIdx++){
+        for(let columnIdx = 0; columnIdx <= 6; columnIdx++){
+            const square = document.getElementById(`square-${rowIdx}-${columnIdx}`);
+            square.innerHTML = '';
+            const playerNumber = game.getTokenAt(rowIdx,columnIdx);
+            if(playerNumber === 1){
+                const tokenDiv = document.createElement('div');
+                tokenDiv.classList.add('black', 'token');
+                square.appendChild(tokenDiv);
+            }else if(playerNumber === 2){
+                const tokenDiv = document.createElement('div');
+                tokenDiv.classList.add('red', 'token');
+                square.appendChild(tokenDiv);
+            }
+        }
     }
     const clickTargets = document.getElementById('click-targets');
     const currentPlayer = game.currentPlayer;
@@ -41,7 +66,10 @@ window.addEventListener('DOMContentLoaded', event => {
     })
     const clickTargets = document.getElementById('click-targets');
     clickTargets.addEventListener('click', event => {
-        game.playInColumn();
+        const targetId = event.target.id;
+        if(!targetId.startsWith('column-')) return;
+        const columnIdx = Number.parseInt(targetId.split('column-').join(''));
+        game.playInColumn(columnIdx);
         updateUI();
     });
     // let playerColor;
