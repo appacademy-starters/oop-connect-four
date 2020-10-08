@@ -31,21 +31,14 @@ window.addEventListener('DOMContentLoaded', event => {
         game = new Game(playerOne.value, playerTwo.value);
         updateUI();
     })
-    let turnCountr = 1;
-    let playerColor;
-    if (turnCountr % 2) {
+    let playerColor = 1;
+    if (!(game.currentPlayer% 2)) {
         playerColor = 'black';
     } else {
         playerColor = 'red';
     }
     document.querySelectorAll('.click-target')
     .forEach(target => {
-        target.addEventListener('mouseenter', event => {
-            event.target.classList.add(playerColor);
-        });
-        target.addEventListener('mouseleave', event => {
-            event.target.classList.remove(playerColor);
-        });
+        target.classList.add(playerColor);
     });
-
 });
