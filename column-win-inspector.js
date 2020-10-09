@@ -1,6 +1,5 @@
 export class ColumnWinInspector {
     static inspect(column) {
-        console.log('Column passed in:',column, column.tokens);
         for (let i = 0; i <= 2; i++) {
             if (
                 column.getTokenAt(i) === column.getTokenAt(i + 1) &&

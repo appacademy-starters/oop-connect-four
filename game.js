@@ -18,7 +18,6 @@ export class Game {
     }
     checkForColumnWin() {
         this.columns.forEach(column => {
-            console.log('Check column win against: ',column)
             const winNumber = ColumnWinInspector.inspect(column);
             if (winNumber === 1 || winNumber === 2) return this.winnerNumber = winNumber;
         });
