@@ -21,7 +21,6 @@ export class Game {
             const winNumber = ColumnWinInspector.inspect(column);
             if (winNumber === 1 || winNumber === 2) return this.winnerNumber = winNumber;
         });
-        console.log('Winner number: ',this.winnerNumber);
     }
     playInColumn(columnIdx) {
         this.columns[columnIdx].add(this.currentPlayer);
