@@ -10,7 +10,7 @@ function updateUI(){
         board.classList.remove('is-invisible');
         gameName.innerHTML = game.getName();
         for(let columnIdx = 0; columnIdx <= 6; columnIdx++){
-           
+
             if(game.isColumnFull(columnIdx)){
                 document.getElementById(`column-${columnIdx}`).classList.add('full');
             }else{
@@ -68,9 +68,9 @@ window.addEventListener('DOMContentLoaded', event => {
     clickTargets.addEventListener('click', event => {
         const targetId = event.target.id;
         const columnIdx = Number.parseInt(targetId.split('column-').join(''));
-        
+
         if(game.isColumnFull(columnIdx)) return;
-        
+
         if(!targetId.startsWith('column-')) return;
         game.playInColumn(columnIdx);
         updateUI();
