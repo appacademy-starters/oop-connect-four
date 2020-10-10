@@ -1,12 +1,9 @@
 export class DiagonalWinInspector {
-    constructor(columns) {
-        this.columns = columns;
-    }
-    inspect() {
-        let column1 = this.columns[0];
-        let column2 = this.columns[1];
-        let column3 = this.columns[2];
-        let column4 = this.columns[3];
+    static inspect(columns) {
+        let column1 = columns[0];
+        let column2 = columns[1];
+        let column3 = columns[2];
+        let column4 = columns[3];
         for (let i = 0; i < 3; i++) {
             let currentTokenCol1DownSlant = column1.getTokenAt(i);
             let currentTokenCol2DownSlant = column2.getTokenAt(i+1);

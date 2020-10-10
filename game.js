@@ -21,7 +21,7 @@ export class Game {
     checkForRowWin() {
         if (this.winnerNumber === 0) {
             for (let i = 0; i < 4; i++) {
-            let columnGroupIsWin = new RowWinInspector(this.columns.slice(i,i+4)).inspect();
+            let columnGroupIsWin = RowWinInspector.inspect(this.columns.slice(i,i+4));
             if (columnGroupIsWin) {this.winnerNumber = columnGroupIsWin; break;}
             }
         }
@@ -29,7 +29,7 @@ export class Game {
     checkForDiagonalWin() {
         if (this.winnerNumber === 0) {
             for (let i = 0; i < 4; i++) {
-            let columnGroupIsWin = new DiagonalWinInspector(this.columns.slice(i,i+4)).inspect();
+            let columnGroupIsWin = DiagonalWinInspector.inspect(this.columns.slice(i,i+4));
             if (columnGroupIsWin) {this.winnerNumber = columnGroupIsWin; break;}
             }
         }
