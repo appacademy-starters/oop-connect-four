@@ -12,6 +12,29 @@ function updateUI() {
   } else {
     boardHolder.classList.remove("is-invisible");
     gameName.innerHTML = game.getName();
+
+    for(let rowIndex = 0; rowIndex <= 5; rowIndex++) {
+      for(let columnIndex = 0; columnIndex <= 6; columnIndex++) {
+        const square = document.querySelector(`#square-${rowIndex}-${columnIndex}`);
+        square.innerHTML = '';
+
+        const playerNumber = game.getTokenAt(rowIndex, columnIndex);
+        if (playerNumber === 1) {
+          const token = document.createElement('div');
+          token.classList.add('token');
+          token.classList.add('black');
+          square.appendChild(token);
+
+        } else if (playerNumber === 2) {
+          const token = document.createElement('div');
+          token.classList.add('token');
+          token.classList.add('red');
+          square.appendChild(token);
+
+        }
+      }
+    }
+
     if (game.currentPlayer === 1) {
       clickTargets.classList.add("black");
       clickTargets.classList.remove("red");
@@ -52,8 +75,13 @@ window.addEventListener("DOMContentLoaded", (event) => {
     updateUI();
   });
 
-  clickTargets.addEventListener("click", () => {
-    game.playInColumn();
+  clickTargets.addEventListener("click", (e) => {
+    const targetId = e.target.id;
+    if(!targetId.startsWith('column-')) return;
+
+    const columnIndex = Number.parseInt(targetId[targetId.length - 1]);
+
+    game.playInColumn(columnIndex);
     updateUI();
   });
 });
